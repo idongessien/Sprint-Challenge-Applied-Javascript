@@ -17,16 +17,27 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+let cardsContainer = document.querySelector('.cards-container');
 
-axios({
-    url: 'https://lambda-times-backend.herokuapp.com/articles',
-    method: 'get'
-}).then((response) => {
-    console.log(response.data);
-}).catch(err => console.error(err));
+axios.get('https://lambda-times-backend.herokuapp.com/articles').then(response => {
+   let articleData = response.data.articles;
+   
+    for (var property in articleData) {
+        let articleItems = articleData[property];
+        articleItems.map(obj => { 
+            const article = obj;
+            const createArticle = Articles(article);
+            console.log(createArticle);
+            cardsContainer.appendChild(createArticle);
+            
+        })
+    }
+})
 
 
-function Articles(headline, authorPhoto, authorName) {
+
+
+function Articles(item) {
     const articleCard = document.createElement('div');
           cardHeadline = document.createElement('div');
           author = document.createElement('div');
@@ -39,20 +50,17 @@ function Articles(headline, authorPhoto, authorName) {
     author.classList.add('author');
     imgContainer.classList.add('img-container');
 
-    var cardsContainer = document.querySelector('.cards-container');
-
-    cardsContainer.appendChild(articleCard);
     articleCard.appendChild(cardHeadline);
     articleCard.appendChild(author);
-    articleCard.appendChild(imgContainer);
-    articleCard.appendChild(authName);
+    author.appendChild(imgContainer);
     imgContainer.appendChild(img);
+    author.appendChild(authName);
 
-    cardHeadline.innerHTML = headline;
-    img.src = authorPhoto;
-    authName.innerHTML = authorName;
+    cardHeadline.innerHTML = item.headline;
+    img.src = item.authorPhoto;
+    authName.innerHTML = item.authorName;
 
-    return Articles;
+    return articleCard;
 }
 
-Articles();
+// Articles();
