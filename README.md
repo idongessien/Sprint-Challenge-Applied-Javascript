@@ -30,13 +30,23 @@ Edit this document to include your answers after each question. Make sure to lea
 
 1. What is the DOM?
 
+    `DOM stands for Document Object Model and is basically an object representation of the elements on a page.`
+
 2. What is an event?
+
+    `Events are how we interact with a page, for instance, clicks, mouseovers, selects, etc.`
 
 3. What is an event listener?
 
+    `We can choose elements that fire a reaction when a particular event occurs, for instance, a link highlighting when mousedover.`
+
 4. Why would we convert a NodeList into an Array?
 
+    `Nodelists are a browser API not a JS API. We convert them so we can use methods like .forEach() when using querySelector().`
+
 5. What is a component?
+
+    `Components are basically reusable code that can be used to build elements for the DOM.`
 
 ### Git Set up
 
